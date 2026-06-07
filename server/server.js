@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const verificarToken = require('./middlewares/verificarToken');
 
 const app = express();
 app.use(cors());
@@ -125,7 +126,7 @@ app.post('/api/usuarios/login', async (req, res) => {
   });
 });
 
-app.post('/api/pedidos/checkout', (req, res) => {
+app.post('/api/pedidos/checkout', verificarToken, (req, res) => {
   const { itens, valorTotal } = req.body;
 
   if (!itens || itens.length === 0) {
