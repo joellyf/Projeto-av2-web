@@ -16,8 +16,21 @@ const CardProduto = ({ produto, aoAdicionarCarrinho }) => {
 
   return (
     <div className="card-produto" onClick={aoClicarNoCard}>
-      <div className="card-produto__imagem-placeholder">
-        <span>{produto.nome.charAt(0)}</span>
+      <div className="card-produto__imagem">
+        {produto.imagem ? (
+          <img
+            src={produto.imagem}
+            alt={produto.nome}
+            className="card-produto__foto"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'flex';
+            }}
+          />
+        ) : null}
+        <div className="card-produto__imagem-placeholder" style={{ display: produto.imagem ? 'none' : 'flex' }}>
+          <span>{produto.nome.charAt(0)}</span>
+        </div>
       </div>
 
       <div className="card-produto__info">

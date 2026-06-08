@@ -16,21 +16,73 @@ const RODADAS_CRIPTOGRAFIA = 10;
 const listaDeProdutos = [
   {
     id: 1,
-    nome: "Natura Ekos Castanha",
-    preco: 45.90,
-    descricao: "Polpa hidratante para as mãos com óleo de castanha. Nutrição imediata."
+    nome: "Essencial",
+    preco: 279.90,
+    descricao: "teste.",
+    imagem: "https://images.pedidos2.natura.net/image/sku/145x145/76420_1.jpg"
   },
   {
     id: 2,
     nome: "Desodorante Colônia Kaiak Masculino",
     preco: 149.90,
-    descricao: "Fragrância hiperaquática. Um clássico da perfumaria nacional."
+    descricao: "teste",
+    imagem: ""
   },
   {
     id: 3,
     nome: "Tododia Algodão Hidratante",
     preco: 62.90,
-    descricao: "Creme para o corpo com nutrição prebiótica. Pele macia todo dia."
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 4,
+    nome: "Perfume Una Feminino",
+    preco: 219.90,
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 5,
+    nome: "teste",
+    preco: 189.90,
+    descricao: "Reduz rugas e linhas de expressão. Fórmula com ativo vegetal de alta performance.",
+    imagem: ""
+  },
+  {
+    id: 6,
+    nome: "Shampoo Plant Cachos",
+    preco: 59.90,
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 7,
+    nome: "Óleo Corporal Ekos Maracujá",
+    preco: 79.90,
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 8,
+    nome: "Batom Faces Color Vermelho",
+    preco: 34.90,
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 9,
+    nome: "Protetor Solar Tododia FPS 50",
+    preco: 89.90,
+    descricao: "teste",
+    imagem: ""
+  },
+  {
+    id: 10,
+    nome: "Kit Presente Ekos Pitanga",
+    preco: 159.90,
+    descricao: "teste",
+    imagem: ""
   }
 ];
 

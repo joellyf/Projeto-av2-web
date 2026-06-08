@@ -17,9 +17,26 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+.card-produto__imagem {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-produto__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-produto:hover .card-produto__foto {
+  transform: scale(1.05);
+}
+
 .card-produto__imagem-placeholder {
   background: linear-gradient(135deg, #1a1a1a, #E8850A);
-  height: 160px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

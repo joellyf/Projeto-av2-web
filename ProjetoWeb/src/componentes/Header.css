@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap');
+
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+  font-family: 'DM Sans', sans-serif;
+  overflow: hidden;
+}
+
+.cabecalho__conteudo {
+  width: 100%;
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecalho__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  transition: opacity 0.2s;
+}
+
+.cabecalho__logo:hover {
+  opacity: 0.75;
+}
+
+.cabecalho__navegacao {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cabecalho__link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  background-color: #E8850A;
+  color: #ffffff;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.cabecalho__link:hover {
+  background-color: #d4770a;
+}
+
+.cabecalho__carrinho {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #2f2f2f;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.cabecalho__carrinho:hover {
+  background-color: #3a3a3a;
+}
+
+.cabecalho__carrinho-texto {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.cabecalho__badge {
+  background-color: #E8850A;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 50px;
+  margin-left: 0.2rem;
+}
+
+.cabecalho__perfil {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2f2f2f;
+  border-radius: 50px;
+  padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+}
+
+.cabecalho__perfil-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cabecalho__perfil-icone {
+  color: #E8850A;
+  flex-shrink: 0;
+}
+
+.cabecalho__perfil-nome {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.cabecalho__botao-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 50%;
+  transition: color 0.2s;
+}
+
+.cabecalho__botao-logout:hover {
+  color: #f87171;
+}
+
+.cabecalho__botao-login {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background-color: #2f2f2f;
+  color: #aaaaaa;
+  padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.cabecalho__botao-login:hover {
+  background-color: #3a3a3a;
+  color: #ffffff;
+}
+
+.cabecalho__botao-login .cabecalho__perfil-icone {
+  color: #666;
+}
+
+.cabecalho__botao-login:hover .cabecalho__perfil-icone {
+  color: #E8850A;
+}
+
+@media (max-width: 600px) {
+  .cabecalho__conteudo {
+    padding: 0 1rem;
+  }
+
+  .cabecalho__navegacao {
+    gap: 0.5rem;
+  }
+
+  .cabecalho__link span,
+  .cabecalho__carrinho-texto {
+    display: none;
+  }
+
+  .cabecalho__perfil-nome {
+    display: none;
+  }
+}
