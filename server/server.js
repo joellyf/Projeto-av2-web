@@ -2,7 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const verificarToken = require('./middlewares/verificarToken');
+const Usuario = require('./modelos/Usuario');
+const Pedido = require('./modelos/Pedido');
 
 const app = express();
 app.use(cors());
@@ -12,6 +15,11 @@ const PORTA = 5000;
 const SEGREDO_JWT = 'meu_segredo_secreto_troque_em_producao';
 const TEMPO_EXPIRACAO_TOKEN = '7d';
 const RODADAS_CRIPTOGRAFIA = 10;
+const MONGO_URI = 'SITE HORROSO CAIU NAO CONSIGO FAZER LOGIN CALMA AI';
+
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('✅ Conectado ao MongoDB com sucesso!'))
+  .catch((erro) => console.error('❌ Erro ao conectar ao MongoDB:', erro.message));
 
 const listaDeProdutos = [
   {
@@ -86,9 +94,6 @@ const listaDeProdutos = [
   }
 ];
 
-let usuariosCadastrados = [];
-let pedidosRealizados = [];
-
 app.get('/', (req, res) => {
   res.send("O servidor está online e pronto para receber requisições.");
 });
@@ -117,27 +122,24 @@ app.post('/api/usuarios/cadastro', async (req, res) => {
     return res.status(400).json({ erro: "Por favor, preencha todos os campos obrigatórios." });
   }
 
-  const emailJaCadastrado = usuariosCadastrados.find(usuario => usuario.email === email);
-  if (emailJaCadastrado) {
-    return res.status(409).json({ erro: "Este e-mail já está cadastrado." });
+  try {
+    const emailJaCadastrado = await Usuario.findOne({ email });
+    if (emailJaCadastrado) {
+      return res.status(409).json({ erro: "Este e-mail já está cadastrado." });
+    }
+
+    const senhaCriptografada = await bcrypt.hash(senha, RODADAS_CRIPTOGRAFIA);
+    const novoUsuario = await Usuario.create({ nome, email, senha: senhaCriptografada });
+
+    console.log(`✅ Novo usuário cadastrado: ${nome}`);
+
+    res.status(201).json({
+      mensagem: "Usuário cadastrado com sucesso!",
+      usuarioId: novoUsuario._id
+    });
+  } catch (erro) {
+    res.status(500).json({ erro: "Erro ao cadastrar usuário." });
   }
-
-  const senhaCriptografada = await bcrypt.hash(senha, RODADAS_CRIPTOGRAFIA);
-
-  const novoUsuario = {
-    id: Date.now(),
-    nome,
-    email,
-    senha: senhaCriptografada
-  };
-
-  usuariosCadastrados.push(novoUsuario);
-  console.log(`✅ Novo usuário cadastrado: ${nome}`);
-
-  res.status(201).json({
-    mensagem: "Usuário cadastrado com sucesso!",
-    usuarioId: novoUsuario.id
-  });
 });
 
 app.post('/api/usuarios/login', async (req, res) => {
@@ -147,38 +149,42 @@ app.post('/api/usuarios/login', async (req, res) => {
     return res.status(400).json({ erro: "E-mail e senha são obrigatórios." });
   }
 
-  const usuarioEncontrado = usuariosCadastrados.find(usuario => usuario.email === email);
-  if (!usuarioEncontrado) {
-    return res.status(401).json({ erro: "E-mail ou senha incorretos." });
-  }
+  try {
+    const usuarioEncontrado = await Usuario.findOne({ email });
+    if (!usuarioEncontrado) {
+      return res.status(401).json({ erro: "E-mail ou senha incorretos." });
+    }
 
-  const senhaCorreta = await bcrypt.compare(senha, usuarioEncontrado.senha);
-  if (!senhaCorreta) {
-    return res.status(401).json({ erro: "E-mail ou senha incorretos." });
-  }
+    const senhaCorreta = await bcrypt.compare(senha, usuarioEncontrado.senha);
+    if (!senhaCorreta) {
+      return res.status(401).json({ erro: "E-mail ou senha incorretos." });
+    }
 
-  const dadosDoToken = {
-    usuarioId: usuarioEncontrado.id,
-    nome: usuarioEncontrado.nome,
-    email: usuarioEncontrado.email
-  };
-
-  const token = jwt.sign(dadosDoToken, SEGREDO_JWT, { expiresIn: TEMPO_EXPIRACAO_TOKEN });
-
-  console.log(`Login realizado: ${usuarioEncontrado.nome}`);
-
-  res.json({
-    mensagem: "Login realizado com sucesso!",
-    token,
-    usuario: {
-      id: usuarioEncontrado.id,
+    const dadosDoToken = {
+      usuarioId: usuarioEncontrado._id,
       nome: usuarioEncontrado.nome,
       email: usuarioEncontrado.email
-    }
-  });
+    };
+
+    const token = jwt.sign(dadosDoToken, SEGREDO_JWT, { expiresIn: TEMPO_EXPIRACAO_TOKEN });
+
+    console.log(`Login realizado: ${usuarioEncontrado.nome}`);
+
+    res.json({
+      mensagem: "Login realizado com sucesso!",
+      token,
+      usuario: {
+        id: usuarioEncontrado._id,
+        nome: usuarioEncontrado.nome,
+        email: usuarioEncontrado.email
+      }
+    });
+  } catch (erro) {
+    res.status(500).json({ erro: "Erro ao realizar login." });
+  }
 });
 
-app.post('/api/pedidos/checkout', verificarToken, (req, res) => {
+app.post('/api/pedidos/checkout', verificarToken, async (req, res) => {
   const { itens, valorTotal } = req.body;
 
   if (!itens || itens.length === 0) {
@@ -189,22 +195,30 @@ app.post('/api/pedidos/checkout', verificarToken, (req, res) => {
     return res.status(400).json({ erro: "O valor total do pedido é inválido." });
   }
 
-  const novoPedido = {
-    idPedido: `PED-${Math.floor(1000 + Math.random() * 9000)}`,
-    dataDoPedido: new Date().toLocaleDateString('pt-BR'),
-    itens,
-    valorTotal,
-    status: "Processando Pagamento"
-  };
+  try {
+    const novoPedido = await Pedido.create({
+      idPedido: `PED-${Math.floor(1000 + Math.random() * 9000)}`,
+      usuario: req.usuario.usuarioId,
+      itens,
+      valorTotal,
+      status: "Processando Pagamento"
+    });
 
-  pedidosRealizados.push(novoPedido);
+    console.log(`Pedido ${novoPedido.idPedido} registrado! Total: R$ ${valorTotal.toFixed(2)}`);
 
-  console.log(`Pedido ${novoPedido.idPedido} registrado! Total: R$ ${valorTotal.toFixed(2)}`);
-
-  res.status(201).json({
-    mensagem: "Compra finalizada com sucesso!",
-    pedido: novoPedido
-  });
+    res.status(201).json({
+      mensagem: "Compra finalizada com sucesso!",
+      pedido: {
+        idPedido: novoPedido.idPedido,
+        dataDoPedido: novoPedido.createdAt.toLocaleDateString('pt-BR'),
+        itens: novoPedido.itens,
+        valorTotal: novoPedido.valorTotal,
+        status: novoPedido.status
+      }
+    });
+  } catch (erro) {
+    res.status(500).json({ erro: "Erro ao finalizar pedido." });
+  }
 });
 
 app.listen(PORTA, () => {
