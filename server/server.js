@@ -15,7 +15,7 @@ const PORTA = 5000;
 const SEGREDO_JWT = 'meu_segredo_secreto_troque_em_producao';
 const TEMPO_EXPIRACAO_TOKEN = '7d';
 const RODADAS_CRIPTOGRAFIA = 10;
-const MONGO_URI = 'SITE HORROSO CAIU NAO CONSIGO FAZER LOGIN CALMA AI';
+const MONGO_URI = 'mongodb+srv://danilogabriel123:hJ6xuGLCnLNUpwnN@rafa-cosmeticos.dx4hf8q.mongodb.net/rafa-cosmeticos?appName=Rafa-Cosmeticos';
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ Conectado ao MongoDB com sucesso!'))
