@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a1a;
+  font-family: 'DM Sans', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.conteudo-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@media (max-width: 600px) {
+  .conteudo-principal {
+    padding: 1rem;
+  }
+}

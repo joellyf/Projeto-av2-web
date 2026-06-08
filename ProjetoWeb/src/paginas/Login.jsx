@@ -23,7 +23,8 @@ const Login = () => {
 
     try {
       await realizarLogin(formulario.email, formulario.senha);
-      navegar('/produtos');
+      const redirecionamento = sessionStorage.getItem('redirecionarAposLogin');
+      navegar(redirecionamento || '/produtos');
     } catch (erroRecebido) {
       setErro(erroRecebido.message);
     } finally {
