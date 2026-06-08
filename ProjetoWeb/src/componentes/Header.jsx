@@ -1,4 +1,4 @@
-import { ShoppingCart, Package, UserCircle2, LogOut } from 'lucide-react';
+import { ShoppingCart, Package, UserCircle2, LogOut, Flower2 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { pegarUsuarioLogado, realizarLogout, estaAutenticado } from '../servicos/autenticacao';
 import './Header.css';
@@ -18,8 +18,8 @@ const Header = ({ quantidadeItensCarrinho = 0 }) => {
       <div className="cabecalho__conteudo">
 
         <Link to="/produtos" className="cabecalho__logo">
-          <Package size={26} />
-          <span>Loja veia</span>
+          <Flower2 size={35} />
+          <span>Rafa Cosméticos</span>
         </Link>
 
         <nav className="cabecalho__navegacao">
