@@ -1,0 +1,118 @@
+.rodape {
+  margin-top: 4rem;
+  background: #1a1a1a;
+  border-top: 1px solid rgba(232, 133, 10, 0.4);
+  color: white;
+}
+
+.rodape__conteudo {
+  width: 100%;
+  max-width: 1600px;
+
+  margin: 0 auto;
+  padding: 3rem 4rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 4rem;
+}
+
+.rodape__logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  color: #E8850A;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.rodape__redes {
+  margin-top: 1.5rem;
+
+  display: flex;
+  gap: .8rem;
+}
+
+.rodape__redes a {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #2a2a2a;
+  color: white;
+
+  transition: .2s;
+}
+
+.rodape__redes a:hover {
+  background: #E8850A;
+}
+
+.rodape__coluna {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.rodape__coluna h4 {
+  margin-bottom: .5rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.rodape__coluna a {
+  text-decoration: none;
+  color: #b0b0b0;
+  font-size: .9rem;
+  transition: .2s;
+}
+
+.rodape__coluna a:hover {
+  color: #E8850A;
+}
+
+.rodape__pagamentos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.rodape__pagamentos span {
+  background: white;
+  color: black;
+
+  padding: .4rem .7rem;
+  border-radius: 6px;
+
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.rodape__copyright {
+  text-align: center;
+
+  border-top: 1px solid #2a2a2a;
+
+  padding: 1rem;
+  font-size: .85rem;
+  color: #888;
+}
+
+@media (max-width: 900px) {
+  .rodape__conteudo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .rodape__conteudo {
+    grid-template-columns: 1fr;
+  }
+}

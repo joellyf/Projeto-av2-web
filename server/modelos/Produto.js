@@ -11,20 +11,12 @@ const esquemaProduto = new mongoose.Schema({
     required: [true, 'O preço é obrigatório'],
     min: [0, 'O preço não pode ser negativo']
   },
-  descricao: {
-    type: String,
-    required: [true, 'A descrição é obrigatória'],
-    trim: true
-  },
   imagem: {
     type: String,
     default: null
-  },
-  disponivel: {
-    type: Boolean,
-    default: true
   }
-}, {
+}, 
+{
   timestamps: true
 });
 

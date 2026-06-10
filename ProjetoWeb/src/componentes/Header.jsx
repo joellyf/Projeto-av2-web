@@ -22,13 +22,26 @@ const Header = ({ quantidadeItensCarrinho = 0 }) => {
           <span>Rafa Cosméticos</span>
         </Link>
 
-        <nav className="cabecalho__navegacao">
+        <nav className="cabecalho__menu">
+            <Link to="/" className="cabecalho__menu-link">
+              Início
+            </Link>
 
-          <Link to="/produtos" className="cabecalho__link">
-            <Package size={16} />
-            <span>Produtos</span>
+          <Link to="/produtos" className="cabecalho__menu-link">
+            Produtos
           </Link>
 
+          <Link to="/sobre" className="cabecalho__menu-link">
+            Sobre nós
+          </Link>
+
+          <Link to="/contato" className="cabecalho__menu-link">
+            Contato
+          </Link>
+        </nav>
+
+        <nav className="cabecalho__navegacao">
+        <div className="cabecalho__acoes">
           <Link to="/carrinho" className="cabecalho__carrinho">
             <ShoppingCart size={20} />
             <span className="cabecalho__carrinho-texto">Meu Carrinho</span>
@@ -55,7 +68,7 @@ const Header = ({ quantidadeItensCarrinho = 0 }) => {
               <span>Fazer login</span>
             </Link>
           )}
-
+          </div>
         </nav>
       </div>
     </header>

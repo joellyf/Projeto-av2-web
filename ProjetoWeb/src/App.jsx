@@ -9,6 +9,7 @@ import ListaProdutos from './componentes/ListaProdutos';
 import DetalheProduto from './paginas/DetalheProduto';
 import Carrinho from './componentes/Carrinho';
 import Checkout from './paginas/Checkout';
+import Rodape from './componentes/Rodape';
 import './App.css';
 
 const RotaProtegida = ({ children }) => {
@@ -28,6 +29,18 @@ const HeaderCondicional = ({ quantidadeItensCarrinho }) => {
   }
 
   return <Header quantidadeItensCarrinho={quantidadeItensCarrinho} />;
+};
+
+const RodapeCondicional = () => {
+  const localizacao = useLocation();
+
+  const rotasSemRodape = ['/login', '/cadastro'];
+
+  if (rotasSemRodape.includes(localizacao.pathname)) {
+    return null;
+  }
+
+  return <Rodape />;
 };
 
 const App = () => {
@@ -122,7 +135,8 @@ const App = () => {
           />
         </Routes>
       </main>
-    </BrowserRouter>
+    <RodapeCondicional/>
+  </BrowserRouter>
   );
 };
 
