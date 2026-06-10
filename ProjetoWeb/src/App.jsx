@@ -48,11 +48,11 @@ const App = () => {
 
   const adicionarAoCarrinho = (produto) => {
     setItensCarrinho((itensAtuais) => {
-      const itemExistente = itensAtuais.find((item) => item.id === produto.id);
+      const itemExistente = itensAtuais.find((item) => item._id === produto._id);
 
       if (itemExistente) {
         return itensAtuais.map((item) =>
-          item.id === produto.id
+          item._id === produto._id
             ? { ...item, quantidade: item.quantidade + 1 }
             : item
         );
@@ -64,7 +64,7 @@ const App = () => {
 
   const removerDoCarrinho = (idProduto) => {
     setItensCarrinho((itensAtuais) =>
-      itensAtuais.filter((item) => item.id !== idProduto)
+      itensAtuais.filter((item) => item._id !== idProduto)
     );
   };
 
@@ -76,7 +76,7 @@ const App = () => {
 
     setItensCarrinho((itensAtuais) =>
       itensAtuais.map((item) =>
-        item.id === idProduto ? { ...item, quantidade: novaQuantidade } : item
+        item._id === idProduto ? { ...item, quantidade: novaQuantidade } : item
       )
     );
   };

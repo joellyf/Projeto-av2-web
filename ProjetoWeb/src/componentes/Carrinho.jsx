@@ -46,10 +46,14 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
 
         <div className="carrinho__lista">
           {itensCarrinho.map((item) => (
-            <div key={item.id} className="carrinho__item">
+            <div key={item._id} className="carrinho__item">
 
-              <div className="carrinho__item-imagem">
-                <span>{item.nome.charAt(0)}</span>
+            <div className="carrinho__item-imagem">
+                {item.imagem ? (
+                  <img src={item.imagem} alt={item.nome} className="carrinho__foto-produto" />
+                ) : (
+                  <span>{item.nome.charAt(0)}</span>
+                )}
               </div>
 
               <div className="carrinho__item-info">
@@ -60,14 +64,14 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
               <div className="carrinho__item-quantidade">
                 <button
                   className="carrinho__botao-quantidade"
-                  onClick={() => aoAlterarQuantidade(item.id, item.quantidade - 1)}
+                  onClick={() => aoAlterarQuantidade(item._id, item.quantidade - 1)}
                 >
                   <Minus size={14} />
                 </button>
                 <span className="carrinho__numero-quantidade">{item.quantidade}</span>
                 <button
                   className="carrinho__botao-quantidade"
-                  onClick={() => aoAlterarQuantidade(item.id, item.quantidade + 1)}
+                  onClick={() => aoAlterarQuantidade(item._id, item.quantidade + 1)}
                 >
                   <Plus size={14} />
                 </button>
@@ -79,7 +83,7 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
 
               <button
                 className="carrinho__botao-remover"
-                onClick={() => aoRemoverItem(item.id)}
+                onClick={() => aoRemoverItem(item._id)}
               >
                 <Trash2 size={18} />
               </button>
