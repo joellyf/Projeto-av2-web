@@ -1,8 +1,3 @@
-/*
-  Servidor: configura o Express, conecta ao MongoDB,
-  define rotas de produtos, usuários e pedidos.
-  Comentários curtos e humanos — não alteram o código.
-*/
 require('dotenv').config();
 console.log(process.env.MONGO_URI);
 // Dependências principais: framework, CORS, criptografia, JWT e banco
@@ -28,7 +23,7 @@ const TEMPO_EXPIRACAO_TOKEN = '7d';
 const RODADAS_CRIPTOGRAFIA = 10;
 const MONGO_URI = process.env.MONGO_URI;
 
-// Conecta ao MongoDB e popula dados iniciais se estiver vazio
+// Conecta o MongoDB e popula dados iniciais se estiver vazio
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('✅ Conectado ao MongoDB Atlas com sucesso!');
@@ -36,12 +31,12 @@ mongoose.connect(MONGO_URI)
   })
   .catch((erro) => console.error('❌ Erro ao conectar ao MongoDB:', erro.message));
 
-// Rota raiz: retorna mensagem simples para checar se o servidor está online
+// Rota raiz que retorna mensagem simples para checar se o servidor está online
 app.get('/', (req, res) => {
   res.send("O servidor está online e pronto para receber requisições.");
 });
 
-// Rota: lista todos os produtos (GET /api/produtos)
+// Rota que lista todos os produtos
 app.get('/api/produtos', async (req, res) => {
   console.log("O front-end solicitou a lista de produtos.");
   try {
@@ -52,7 +47,7 @@ app.get('/api/produtos', async (req, res) => {
   }
 });
 
-// Rota: detalhes de um produto por id (GET /api/produtos/:id)
+// Rota de detalhes de um produto por id
 app.get('/api/produtos/:id', async (req, res) => {
   try {
     const produtoEncontrado = await Produto.findById(req.params.id);
@@ -68,7 +63,7 @@ app.get('/api/produtos/:id', async (req, res) => {
   }
 });
 
-// Rota: cadastro de usuário (POST /api/usuarios/cadastro)
+// Rota do cadastro de usuário 
 // Valida campos, checa email duplicado e salva com senha criptografada
 app.post('/api/usuarios/cadastro', async (req, res) => {
   const { nome, email, senha } = req.body;
@@ -78,7 +73,7 @@ app.post('/api/usuarios/cadastro', async (req, res) => {
   }
 
   try {
-    // Verifica se já existe usuário com este e-mail
+    // Verifica se já existe usuário com esse e-mail
     const emailJaCadastrado = await Usuario.findOne({ email });
     if (emailJaCadastrado) {
       return res.status(409).json({ erro: "Este e-mail já está cadastrado." });
@@ -100,7 +95,7 @@ app.post('/api/usuarios/cadastro', async (req, res) => {
   }
 });
 
-// Rota: login de usuário (POST /api/usuarios/login)
+// Rota: login de usuário
 // Verifica credenciais e retorna token JWT em caso de sucesso
 app.post('/api/usuarios/login', async (req, res) => {
   const { email, senha } = req.body;
@@ -110,7 +105,7 @@ app.post('/api/usuarios/login', async (req, res) => {
   }
 
   try {
-    // Recupera usuário pelo e-mail (se existir)
+    // Recupera usuário pelo e-mail 
     const usuarioEncontrado = await Usuario.findOne({ email });
     if (!usuarioEncontrado) {
       return res.status(401).json({ erro: "E-mail ou senha incorretos." });
@@ -147,7 +142,7 @@ app.post('/api/usuarios/login', async (req, res) => {
   }
 });
 
-// Rota: finalizar pedido (POST /api/pedidos/checkout)
+// Rota de finalizar pedido 
 // Requer token — cria um pedido vinculado ao usuário autenticado
 app.post('/api/pedidos/checkout', verificarToken, async (req, res) => {
   const { itens, valorTotal } = req.body;

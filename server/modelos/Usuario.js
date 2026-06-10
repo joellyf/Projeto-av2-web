@@ -1,11 +1,7 @@
-/*
-  Modelo: Usuário (Mongoose)
-  Define nome, email, senha e foto de perfil com timestamps.
-*/
 const mongoose = require('mongoose');
 
 const esquemaUsuario = new mongoose.Schema({
-  // Nome completo do usuário (usado em exibições e identificação)
+  // Nome completo do usuário
   nome: {
     type: String,
     required: [true, 'O nome é obrigatório'],
@@ -19,12 +15,12 @@ const esquemaUsuario = new mongoose.Schema({
     lowercase: true,
     trim: true
   },
-  // Hash da senha (nunca salvar a senha em texto claro)
+  // Hash da senha
   senha: {
     type: String,
     required: [true, 'A senha é obrigatória']
   },
-  // URL ou caminho da foto de perfil do usuário (opcional)
+  // URL ou caminho da foto de perfil do usuário 
   fotoPerfil: {
     type: String,
     default: null

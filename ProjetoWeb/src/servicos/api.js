@@ -1,13 +1,9 @@
-/*
-  Serviço HTTP: helpers para fazer requisições ao backend.
-  Contém base URL, cabeçalhos e função genérica de fetch.
-*/
 const URL_BASE = 'http://localhost:5000/api';
 
-// Retorna token salvo no localStorage (ou null)
+// Retorna token salvo
 const pegarToken = () => localStorage.getItem('token');
 
-// Cabeçalho para requisições autenticadas (inclui Authorization)
+// Cabeçalho para requisições autenticadas
 const cabecalhoAutenticado = () => ({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${pegarToken()}`
