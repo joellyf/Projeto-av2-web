@@ -1,5 +1,8 @@
+/* Estilos do cabeçalho fixo: logo, menu centralizado, itens de navegação
+  e área de perfil/carrinho. */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap');
 
+/* cabeçalho: sticky no topo, sombra e fundo escuro */
 .cabecalho {
   position: sticky;
   top: 0;
@@ -12,6 +15,7 @@
   position: relative;
 }
 
+/* Menu principal centralizado (links: Início, Produtos, etc.) */
 .cabecalho__menu { 
   position: absolute;
   left: 50%;
@@ -20,6 +24,7 @@
   gap: 2rem; /* Mantém o espaçamento correto entre Início, Produtos, etc. */
 }
 
+/* logo à esquerda e navegação à direita */
 .cabecalho__conteudo {
   width: 100%;
   padding: 0 2rem;
@@ -29,6 +34,7 @@
   justify-content: space-between;
 }
 
+/* ícone e nome clicável */
 .cabecalho__logo {
   display: flex;
   align-items: center;
@@ -46,12 +52,14 @@
   opacity: 0.75;
 }
 
+/* Área de navegação direita do carrinho e perfil/login */
 .cabecalho__navegacao {
   display: flex;
   align-items: center;
   gap: 0.8rem;
 }
 
+/* Link do carrinho onde mostra badge com a quantidade de produtos */
 .cabecalho__carrinho {
   position: relative;
   display: flex;
@@ -90,6 +98,7 @@
   margin-left: 0.2rem;
 }
 
+/* perfil quando autenticado */
 .cabecalho__perfil {
   display: flex;
   align-items: center;
@@ -134,6 +143,7 @@
   color: #f87171;
 }
 
+/* Botão de login quando não autenticado */
 .cabecalho__botao-login {
   display: flex;
   align-items: center;

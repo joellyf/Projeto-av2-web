@@ -5,6 +5,7 @@
   color: white;
 }
 
+/* Área principal do conteúdo do rodapé */
 .rodape__conteudo {
   width: 100%;
   max-width: 1600px;
@@ -19,6 +20,7 @@
   gap: 4rem;
 }
 
+/* Logo/brand do rodapé e icone */
 .rodape__logo {
   display: flex;
   align-items: center;
@@ -29,6 +31,7 @@
   font-weight: 700;
 }
 
+/* Ícones das redes sociais */
 .rodape__redes {
   margin-top: 1.5rem;
 
@@ -55,6 +58,7 @@
   background: #E8850A;
 }
 
+/* Cada coluna de links */
 .rodape__coluna {
   display: flex;
   flex-direction: column;

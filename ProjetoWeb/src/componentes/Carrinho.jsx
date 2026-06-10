@@ -1,3 +1,5 @@
+/* Componente Carrinho: lista itens no carrinho, controla quantidade
+  e inicia finalização da compra */
 import { useNavigate } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
 import { estaAutenticado } from '../servicos/autenticacao';
@@ -6,11 +8,13 @@ import './Carrinho.css';
 const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
   const navegar = useNavigate();
 
+  // Calcula o total somando preço por quantidade para cada item
   const valorTotal = itensCarrinho.reduce(
     (total, item) => total + item.preco * item.quantidade,
     0
   );
 
+  // Verifica autenticação antes de finalizar a compra
   const aoFinalizarCompra = () => {
     if (!estaAutenticado()) {
       sessionStorage.setItem('redirecionarAposLogin', '/checkout');
@@ -20,6 +24,7 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
     navegar('/checkout');
   };
 
+  // Renderiza mensagem quando carrinho está vazio
   if (itensCarrinho.length === 0) {
     return (
       <div className="carrinho__vazio">
@@ -48,6 +53,7 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
           {itensCarrinho.map((item) => (
             <div key={item._id} className="carrinho__item">
 
+            {/* Miniatura do produto ou inicial como placeholder */}
             <div className="carrinho__item-imagem">
                 {item.imagem ? (
                   <img src={item.imagem} alt={item.nome} className="carrinho__foto-produto" />
@@ -56,11 +62,13 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
                 )}
               </div>
 
+              {/* Informações básicas do item: nome e preço */}
               <div className="carrinho__item-info">
                 <h3 className="carrinho__item-nome">{item.nome}</h3>
                 <p className="carrinho__item-preco-unitario">R$ {item.preco.toFixed(2)} cada</p>
               </div>
 
+              {/* Controles de quantidade: diminuir, número e aumentar */}
               <div className="carrinho__item-quantidade">
                 <button
                   className="carrinho__botao-quantidade"
@@ -77,6 +85,7 @@ const Carrinho = ({ itensCarrinho, aoRemoverItem, aoAlterarQuantidade }) => {
                 </button>
               </div>
 
+              {/* Subtotal do item e botão para remover do carrinho */}
               <span className="carrinho__item-subtotal">
                 R$ {(item.preco * item.quantidade).toFixed(2)}
               </span>

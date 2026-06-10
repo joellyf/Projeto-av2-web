@@ -1,3 +1,7 @@
+/*
+  Componente raiz: configura rotas, estado do carrinho e componentes compartilhados.
+  Contém rotas públicas e protegidas, e lógica do carrinho em memória.
+*/
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { estaAutenticado } from './servicos/autenticacao';
@@ -12,6 +16,7 @@ import Checkout from './paginas/Checkout';
 import Rodape from './componentes/Rodape';
 import './App.css';
 
+// Componente que protege rotas, redirecionando para /login se não autenticado
 const RotaProtegida = ({ children }) => {
   if (!estaAutenticado()) {
     return <Navigate to="/login" replace />;
@@ -19,6 +24,7 @@ const RotaProtegida = ({ children }) => {
   return children;
 };
 
+// Renderiza o `Header` apenas em rotas que o utilizam
 const HeaderCondicional = ({ quantidadeItensCarrinho }) => {
   const localizacao = useLocation();
 
@@ -31,6 +37,7 @@ const HeaderCondicional = ({ quantidadeItensCarrinho }) => {
   return <Header quantidadeItensCarrinho={quantidadeItensCarrinho} />;
 };
 
+// Renderiza o `Rodape` apenas em rotas que o utilizam
 const RodapeCondicional = () => {
   const localizacao = useLocation();
 
@@ -46,6 +53,7 @@ const RodapeCondicional = () => {
 const App = () => {
   const [itensCarrinho, setItensCarrinho] = useState([]);
 
+  // Adiciona produto ao carrinho (aumenta quantidade se já existir)
   const adicionarAoCarrinho = (produto) => {
     setItensCarrinho((itensAtuais) => {
       const itemExistente = itensAtuais.find((item) => item._id === produto._id);
@@ -62,12 +70,14 @@ const App = () => {
     });
   };
 
+  // Remove item do carrinho pelo id
   const removerDoCarrinho = (idProduto) => {
     setItensCarrinho((itensAtuais) =>
       itensAtuais.filter((item) => item._id !== idProduto)
     );
   };
 
+  // Atualiza a quantidade de um item (remove se novaQuantidade <= 0)
   const alterarQuantidade = (idProduto, novaQuantidade) => {
     if (novaQuantidade <= 0) {
       removerDoCarrinho(idProduto);
@@ -81,6 +91,7 @@ const App = () => {
     );
   };
 
+  // Limpa o carrinho (usado após finalizar pedido)
   const limparCarrinho = () => {
     setItensCarrinho([]);
   };
@@ -97,20 +108,23 @@ const App = () => {
       <main className="conteudo-principal">
         <Routes>
           <Route path="/" element={<Navigate to="/produtos" replace />} />
-
+          {/* Rotas públicas: login e cadastro */}
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
 
+          {/* Lista de produtos (página inicial) */}
           <Route
             path="/produtos"
             element={<ListaProdutos aoAdicionarCarrinho={adicionarAoCarrinho} />}
           />
 
+          {/* Página de detalhe de um produto */}
           <Route
             path="/produtos/:id"
             element={<DetalheProduto aoAdicionarCarrinho={adicionarAoCarrinho} />}
           />
 
+          {/* Carrinho: mostra itens adicionados */}
           <Route
             path="/carrinho"
             element={
@@ -122,6 +136,7 @@ const App = () => {
             }
           />
 
+          {/* Checkout: rota protegida, requer autenticação */}
           <Route
             path="/checkout"
             element={

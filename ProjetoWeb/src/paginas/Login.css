@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap');
 
+/* Container da página de login */
 .pagina-login {
   min-height: calc(100vh - 70px);
   display: flex;
@@ -9,6 +10,7 @@
   background-color: #1a1a1a;
 }
 
+/* Card principal que contém marca e formulário */
 .pagina-login__card {
   display: flex;
   width: 100%;
@@ -19,6 +21,7 @@
   box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
 }
 
+/* Lado esquerdo: apresentação da marca e link para cadastro */
 .pagina-login__lado-esquerdo {
   background: linear-gradient(160deg, #2a2a2a, #1a1a1a);
   border-right: 1px solid #333;
@@ -70,6 +73,7 @@
   color: #ffffff;
 }
 
+/* Lado direito do formulário de login */
 .pagina-login__lado-direito {
   background: #242424;
   flex: 1;
@@ -87,6 +91,7 @@
   margin-bottom: 2rem;
 }
 
+/* Formulário de campos e ações */
 .pagina-login__formulario {
   display: flex;
   flex-direction: column;

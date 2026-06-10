@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap');
 
+/* Animação de entrada */
 @keyframes aparecerPagina {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Container principal da página de detalhe */
 .detalhe-produto {
   padding: 2rem 0;
   animation: aparecerPagina 0.4s ease both;
 }
 
+/* Botão/link para voltar à lista de produtos */
 .detalhe-produto__link-voltar {
   display: inline-flex;
   align-items: center;
@@ -29,6 +32,7 @@
   color: #E8850A;
 }
 
+/* Grid principal da imagem e informações do produto */
 .detalhe-produto__conteudo {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -36,6 +40,7 @@
   align-items: start;
 }
 
+/* Placeholder grande para imagem (quando não tiver foto) */
 .detalhe-produto__imagem-placeholder {
   background: linear-gradient(135deg, #1a1a1a, #E8850A);
   border-radius: 20px;

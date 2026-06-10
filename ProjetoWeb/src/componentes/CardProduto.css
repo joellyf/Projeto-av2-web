@@ -1,5 +1,8 @@
+
+/*Estilos do cartão de produto usado*/
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap');
 
+/* principal do site: fundo, borda e layout em coluna */
 .card-produto {
   background: #242424;
   border-radius: 16px;
@@ -17,12 +20,14 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
+/* imagem: área fixa pra foto */
 .card-produto__imagem {
   position: relative;
   height: 200px;
   overflow: hidden;
 }
 
+/* foto do produto */
 .card-produto__foto {
   width: 100%;
   height: 100%;
@@ -34,6 +39,7 @@
   transform: scale(1.05);
 }
 
+/* quando nao tem imagem mostra inicial estilizada */
 .card-produto__imagem-placeholder {
   background: linear-gradient(135deg, #1a1a1a, #E8850A);
   height: 100%;
@@ -50,6 +56,7 @@
   text-transform: uppercase;
 }
 
+/* Área de informações dos perfumes */
 .card-produto__info {
   padding: 1.2rem;
   display: flex;
@@ -58,6 +65,7 @@
   flex: 1;
 }
 
+/* Nome do produto */
 .card-produto__nome {
   font-family: 'Syne', sans-serif;
   font-size: 1rem;
@@ -66,6 +74,7 @@
   margin: 0;
 }
 
+/*Descrição curta: ocupa espaço flexível dentro*/
 .card-produto__descricao {
   font-size: 0.85rem;
   color: #888;
@@ -74,6 +83,7 @@
   flex: 1;
 }
 
+/* Rodapé do produto: preço à esquerda e botão à direita */
 .card-produto__rodape {
   display: flex;
   align-items: center;
@@ -81,6 +91,7 @@
   margin-top: 0.8rem;
 }
 
+/* Preço: fonte em destaque */
 .card-produto__preco {
   font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
@@ -88,6 +99,7 @@
   color: #ffffff;
 }
 
+/* Botão primário do cartao do produto: adiciona ao carrinho */
 .card-produto__botao {
   display: flex;
   align-items: center;

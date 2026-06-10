@@ -13,10 +13,12 @@ const Cadastro = () => {
   const [carregando, setCarregando] = useState(false);
   const [senhaVisivel, setSenhaVisivel] = useState(false);
 
+  // Atualiza campos do formulário enquanto o usuário digita
   const aoAlterarCampo = (evento) => {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
   };
 
+  // faz o cadastro: chama serviço e mostra feedback de sucesso/erro
   const aoSubmeterFormulario = async (evento) => {
     evento.preventDefault();
     setErro('');
@@ -37,22 +39,22 @@ const Cadastro = () => {
   return (
     <div className="pagina-cadastro">
       <div className="pagina-cadastro__card">
-
+        {/* Lado esquerdo que marca e linka para login */}
         <div className="pagina-cadastro__lado-esquerdo">
           <Flower2 size={44} className="pagina-cadastro__icone-marca" />
-          <h2 className="pagina-cadastro__boas-vindas">Bem-vindo à...nao sei</h2>
-          <p className="pagina-cadastro__descricao-marca">ver com a veia.</p>
+          <h2 className="pagina-cadastro__boas-vindas">Bem-vindo!</h2>
           <Link to="/login" className="pagina-cadastro__botao-alternar">
             Entrar
           </Link>
         </div>
 
-
+        {/* Lado direito do formulário de criação de conta */}
         <div className="pagina-cadastro__lado-direito">
           <h1 className="pagina-cadastro__titulo">Cria sua conta</h1>
 
           <form className="pagina-cadastro__formulario" onSubmit={aoSubmeterFormulario}>
 
+            {/* Campo para o nome completo */}
             <div className="pagina-cadastro__campo">
               <label className="pagina-cadastro__label">Nome completo</label>
               <div className="pagina-cadastro__input-wrapper">
@@ -68,6 +70,7 @@ const Cadastro = () => {
               </div>
             </div>
 
+            {/* Campo do e-mail */}
             <div className="pagina-cadastro__campo">
               <label className="pagina-cadastro__label">E-mail</label>
               <div className="pagina-cadastro__input-wrapper">
@@ -83,6 +86,7 @@ const Cadastro = () => {
               </div>
             </div>
 
+            {/* Campo de senha com toggle de visibilidade */}
             <div className="pagina-cadastro__campo">
               <label className="pagina-cadastro__label">Senha</label>
               <div className="pagina-cadastro__input-wrapper">
@@ -105,9 +109,11 @@ const Cadastro = () => {
               </div>
             </div>
 
+            {/* Mensagens de erro ou sucesso */}
             {erro && <p className="pagina-cadastro__erro">{erro}</p>}
             {sucesso && <p className="pagina-cadastro__sucesso">{sucesso}</p>}
 
+            {/* Botão para enviar o formulário de cadastro */}
             <button className="pagina-cadastro__botao" type="submit" disabled={carregando}>
               <UserPlus size={18} />
               {carregando ? 'Cadastrando...' : 'Cadastrar'}

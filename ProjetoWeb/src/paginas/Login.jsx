@@ -12,10 +12,12 @@ const Login = () => {
   const [carregando, setCarregando] = useState(false);
   const [senhaVisivel, setSenhaVisivel] = useState(false);
 
+  // Atualiza estado do formulário ao digitar
   const aoAlterarCampo = (evento) => {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
   };
 
+  // Submete o login que chama serviço e redireciona se sucesso
   const aoSubmeterFormulario = async (evento) => {
     evento.preventDefault();
     setErro('');
@@ -36,20 +38,22 @@ const Login = () => {
     <div className="pagina-login">
       <div className="pagina-login__card">
 
+        {/* Lado esquerdo da apresentação da marca e link para cadastro */}
         <div className="pagina-login__lado-esquerdo">
           <Flower2 size={44} className="pagina-login__icone-marca" />
-          <h2 className="pagina-login__boas-vindas">Bem-vindo de volta</h2>
-          <p className="pagina-login__descricao-marca">Nao sei ainda oque botar aqui, vou perguntar para a veia.</p>
+          <h2 className="pagina-login__boas-vindas">Bem-vindo de volta!</h2>
           <Link to="/cadastro" className="pagina-login__botao-alternar">
             Criar conta
           </Link>
         </div>
 
+        {/* Lado direito do formulário de login com campos e ações */}
         <div className="pagina-login__lado-direito">
           <h1 className="pagina-login__titulo">Entrar</h1>
 
           <form className="pagina-login__formulario" onSubmit={aoSubmeterFormulario}>
 
+            {/* Campo de e-mail */}
             <div className="pagina-login__campo">
               <label className="pagina-login__label">E-mail</label>
               <div className="pagina-login__input-wrapper">
@@ -65,6 +69,7 @@ const Login = () => {
               </div>
             </div>
 
+            {/* Campo de senha com botão para alternar visibilidade */}
             <div className="pagina-login__campo">
               <label className="pagina-login__label">Senha</label>
               <div className="pagina-login__input-wrapper">
@@ -92,8 +97,10 @@ const Login = () => {
               </span>
             </div>
 
+            {/* Mensagem de erro geral do formulário */}
             {erro && <p className="pagina-login__erro">{erro}</p>}
 
+            {/* Botão de envio do formulário */}
             <button className="pagina-login__botao" type="submit" disabled={carregando}>
               <LogIn size={18} />
               {carregando ? 'Entrando...' : 'Entrar'}

@@ -13,6 +13,7 @@ const DetalheProduto = ({ aoAdicionarCarrinho }) => {
   const [erro, setErro] = useState('');
   const [adicionado, setAdicionado] = useState(false);
 
+  // Carrega detalhes do produto sempre que o id da rota muda
   useEffect(() => {
     const carregarProduto = async () => {
       try {
@@ -28,6 +29,7 @@ const DetalheProduto = ({ aoAdicionarCarrinho }) => {
     carregarProduto();
   }, [id]);
 
+  // Adiciona produto ao carrinho e mostra feedback temporário "Adicionado"
   const aoClicarAdicionarCarrinho = () => {
     aoAdicionarCarrinho(produto);
     setAdicionado(true);
@@ -58,6 +60,7 @@ const DetalheProduto = ({ aoAdicionarCarrinho }) => {
   return (
     <div className="detalhe-produto">
 
+      {/* Link para voltar à lista de produtos */}
       <button className="detalhe-produto__link-voltar" onClick={() => navegar('/produtos')}>
         <ArrowLeft size={18} />
         Voltar para produtos
@@ -65,19 +68,23 @@ const DetalheProduto = ({ aoAdicionarCarrinho }) => {
 
       <div className="detalhe-produto__conteudo">
 
+        {/* Espaço para imagem grande ou placeholder com inicial */}
         <div className="detalhe-produto__imagem-placeholder">
           <span>{produto.nome.charAt(0)}</span>
         </div>
 
+        {/* Informações do produto: nome, descrição e ação de adicionar */}
         <div className="detalhe-produto__informacoes">
           <h1 className="detalhe-produto__nome">{produto.nome}</h1>
           <p className="detalhe-produto__descricao">{produto.descricao}</p>
 
           <div className="detalhe-produto__rodape">
+            {/* Preço em destaque */}
             <span className="detalhe-produto__preco">
               R$ {produto.preco.toFixed(2)}
             </span>
 
+            {/* Botão que adiciona ao carrinho e mostra texto temporário */}
             <button
               className={`detalhe-produto__botao-carrinho ${adicionado ? 'detalhe-produto__botao-carrinho--adicionado' : ''}`}
               onClick={aoClicarAdicionarCarrinho}

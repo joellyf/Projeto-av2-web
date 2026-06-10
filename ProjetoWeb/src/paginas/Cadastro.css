@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap');
 
+/* Container principal da página de cadastro */
 .pagina-cadastro {
   min-height: calc(100vh - 70px);
   display: flex;
@@ -9,6 +10,7 @@
   background-color: #1a1a1a;
 }
 
+/* Card com layout dividido */
 .pagina-cadastro__card {
   display: flex;
   width: 100%;
@@ -19,6 +21,7 @@
   box-shadow: 0 8px 48px rgba(0, 0, 0, 0.5);
 }
 
+/* Lado direito do formulário de criação de conta */
 .pagina-cadastro__lado-direito {
   background: #242424;
   flex: 1;
@@ -36,6 +39,7 @@
   margin-bottom: 2rem;
 }
 
+/* Formulário: inputs, validação visual e botões */
 .pagina-cadastro__formulario {
   display: flex;
   flex-direction: column;

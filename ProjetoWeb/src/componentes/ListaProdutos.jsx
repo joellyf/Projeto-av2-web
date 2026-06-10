@@ -9,6 +9,7 @@ const ListaProdutos = ({ aoAdicionarCarrinho }) => {
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
 
+  // Carrega lista de produtos do backend ao montar o componente
   useEffect(() => {
     const carregarProdutos = async () => {
       try {
@@ -24,6 +25,7 @@ const ListaProdutos = ({ aoAdicionarCarrinho }) => {
     carregarProdutos();
   }, []);
 
+  //carregando
   if (carregando) {
     return (
       <div className="lista-produtos__estado">
@@ -33,6 +35,7 @@ const ListaProdutos = ({ aoAdicionarCarrinho }) => {
     );
   }
 
+  // erro ao buscar produtos
   if (erro) {
     return (
       <div className="lista-produtos__estado">
@@ -42,6 +45,7 @@ const ListaProdutos = ({ aoAdicionarCarrinho }) => {
     );
   }
 
+  // lista vazia
   if (listaDeProdutos.length === 0) {
     return (
       <div className="lista-produtos__estado">

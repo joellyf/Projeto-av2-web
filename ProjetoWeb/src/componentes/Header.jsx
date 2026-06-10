@@ -1,3 +1,5 @@
+/* barra superior com logo, navegação, botão de carrinho
+  e menu de usuário (login/logout) */
 import { ShoppingCart, Package, UserCircle2, LogOut, Flower2 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { pegarUsuarioLogado, realizarLogout, estaAutenticado } from '../servicos/autenticacao';
@@ -17,11 +19,13 @@ const Header = ({ quantidadeItensCarrinho = 0 }) => {
     <header className="cabecalho">
       <div className="cabecalho__conteudo">
 
+        {/*volta para a lista de produtos */}
         <Link to="/produtos" className="cabecalho__logo">
           <Flower2 size={35} />
           <span>Rafa Cosméticos</span>
         </Link>
 
+        {/* Menu principal com links de navegação */}
         <nav className="cabecalho__menu">
             <Link to="/" className="cabecalho__menu-link">
               Início
@@ -40,6 +44,7 @@ const Header = ({ quantidadeItensCarrinho = 0 }) => {
           </Link>
         </nav>
 
+        {/* Área de ações do carrinho e perfil da pessoa */}
         <nav className="cabecalho__navegacao">
         <div className="cabecalho__acoes">
           <Link to="/carrinho" className="cabecalho__carrinho">

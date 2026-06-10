@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@400;500&display=swap');
 
+/* Animação de entrada para card */
 @keyframes aparecerCard {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Área principal da lista*/
 .lista-produtos {
   padding: 2rem 0;
   animation: aparecerCard 0.4s ease both;
 }
 
+/* Cabeçalho com título e subtítulo */
 .lista-produtos__cabecalho {
   margin-bottom: 2rem;
 }
@@ -28,12 +31,14 @@
   color: #888;
 }
 
+/* Grid responsivo por empacota os cards */
 .lista-produtos__grade {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
+/* Bloco de estado (carregando/erro/vazio) */
 .lista-produtos__estado {
   display: flex;
   flex-direction: column;
@@ -54,6 +59,7 @@
   color: #f87171;
 }
 
+/* Spinner usado durante carregamento */
 .lista-produtos__spinner {
   width: 36px;
   height: 36px;

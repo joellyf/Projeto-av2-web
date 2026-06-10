@@ -19,6 +19,7 @@ const Checkout = ({ itensCarrinho, aoLimparCarrinho }) => {
     0
   );
 
+  // Remove flag de redirecionamento após montar a página (se tiver)
   useEffect(() => {
     const redirecionamento = sessionStorage.getItem('redirecionarAposLogin');
     if (redirecionamento) {
@@ -26,6 +27,7 @@ const Checkout = ({ itensCarrinho, aoLimparCarrinho }) => {
     }
   }, []);
 
+  // Envia o pedido ao backend e trata resposta (limpa carrinho e mostra sucesso ou erro)
   const aoConfirmarPedido = async () => {
     setErro('');
     setCarregando(true);
@@ -73,10 +75,12 @@ const Checkout = ({ itensCarrinho, aoLimparCarrinho }) => {
   return (
     <div className="checkout">
 
+      {/* Título da página */}
       <h1 className="checkout__titulo">Finalizar Compra</h1>
 
       <div className="checkout__conteudo">
 
+        {/* Seção de dados do comprador exibidos a partir do usuário logado */}
         <div className="checkout__secao">
           <h2 className="checkout__secao-titulo">Dados do comprador</h2>
           <div className="checkout__dados-usuario">
@@ -91,6 +95,7 @@ const Checkout = ({ itensCarrinho, aoLimparCarrinho }) => {
           </div>
         </div>
 
+        {/* Seção da lista de itens do pedido e total */}
         <div className="checkout__secao">
           <h2 className="checkout__secao-titulo">Itens do pedido</h2>
           <div className="checkout__lista-itens">
@@ -111,8 +116,10 @@ const Checkout = ({ itensCarrinho, aoLimparCarrinho }) => {
           </div>
         </div>
 
+        {/* Mensagem de erro se falhar ao confirmar pedido */}
         {erro && <p className="checkout__erro">{erro}</p>}
 
+        {/* Botão que envia o pedido ao backend */}
         <button
           className="checkout__botao-confirmar"
           onClick={aoConfirmarPedido}

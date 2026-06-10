@@ -8,6 +8,7 @@ const Rodape = () => {
 
       <div className="rodape__conteudo">
 
+        {/* Coluna da logo e redes sociais */}
         <div className="rodape__coluna">
           <div className="rodape__logo">
             <Flower2 size={24} />
@@ -29,6 +30,7 @@ const Rodape = () => {
           </div>
         </div>
 
+        {/* Coluna de links institucionais */}
         <div className="rodape__coluna">
           <h4>Institucional</h4>
 
@@ -37,6 +39,7 @@ const Rodape = () => {
           <a href="#">Termos de uso</a>
         </div>
 
+        {/* Coluna de ajuda ao cliente */}
         <div className="rodape__coluna">
           <h4>Ajuda</h4>
 
@@ -45,6 +48,7 @@ const Rodape = () => {
           <a href="#">Fale conosco</a>
         </div>
 
+        {/* Coluna de formas de pagamento aceitas */}
         <div className="rodape__coluna">
           <h4>Formas de pagamento</h4>
 
